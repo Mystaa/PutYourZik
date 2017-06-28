@@ -42,6 +42,18 @@ class Music
      */
     private $duration;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Publication", inversed="musics")
+     */
+
+    private $publication;
+
+    /**
+     * @ORM\OneToMany(targetEntity="User", inversedBy="musics")
+     */
+
+    private $user;
+
 
     /**
      * Get id

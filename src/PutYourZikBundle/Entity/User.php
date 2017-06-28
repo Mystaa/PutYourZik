@@ -91,6 +91,10 @@ class User
      */
     private $social;
 
+    /**
+     * @ORM
+     */
+
 
     /**
      * Get id
