@@ -1,3 +1,4 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+put_your_zik:
+    resource: "@PutYourZikBundle/Resources/config/routing.yml"
+    prefix:   /
+
