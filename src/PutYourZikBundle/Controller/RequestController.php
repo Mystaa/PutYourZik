@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 
-class UserController extends Controller
+class RequestController extends Controller
 {
     public function requestAction()
     {
