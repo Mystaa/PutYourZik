@@ -1,3 +1,3 @@
 put_your_zik_homepage:
     path:     /
-    defaults: { _controller: PutYourZikBundle:User:index }
+    defaults: { _controller: PutYourZikBundle:Request:request }
