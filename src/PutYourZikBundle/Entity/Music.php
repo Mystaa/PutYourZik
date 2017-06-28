@@ -34,6 +34,12 @@ class Music
      * @ORM\Column(name="Author", type="string", length=255)
      */
     private $author;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Url", type="string", length=255)
+     */
+    private $url;
 
     /**
      * @var \DateTime
@@ -99,6 +105,30 @@ class Music
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     *
+     * @return Music
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 
     /**
