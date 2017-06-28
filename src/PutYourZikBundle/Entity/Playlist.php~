@@ -94,4 +94,3 @@ class Playlist
         return $this->duration;
     }
 }
-
