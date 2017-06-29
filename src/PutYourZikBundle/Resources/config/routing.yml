@@ -1,3 +1,7 @@
 put_your_zik_homepage:
     path:     /
     defaults: { _controller: PutYourZikBundle:Request:request }
+
+put_your_zik_test:
+    path:    /test
+    defaults: { _controller: PutYourZikBundle:Request:getInfos }

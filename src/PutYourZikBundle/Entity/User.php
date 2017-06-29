@@ -92,8 +92,30 @@ class User
     private $social;
 
     /**
-     * @ORM
+     * @ORM\OneToMany(targetEntity="Music", mappedBy="user")
      */
+
+    private $musics;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Playlist", mappedBy="user")
+     */
+
+    private $playlists;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Publication", mappedBy="user")
+     */
+
+    private $publications;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comments", mappedBy="user")
+     */
+
+    private $comments;
+
+
 
 
     /**
@@ -344,5 +366,151 @@ class User
     public function getSocial()
     {
         return $this->social;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->musics = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->playlists = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->publications = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add music
+     *
+     * @param \PutYourZikBundle\Entity\Music $music
+     *
+     * @return User
+     */
+    public function addMusic(\PutYourZikBundle\Entity\Music $music)
+    {
+        $this->musics[] = $music;
+
+        return $this;
+    }
+
+    /**
+     * Remove music
+     *
+     * @param \PutYourZikBundle\Entity\Music $music
+     */
+    public function removeMusic(\PutYourZikBundle\Entity\Music $music)
+    {
+        $this->musics->removeElement($music);
+    }
+
+    /**
+     * Get musics
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMusics()
+    {
+        return $this->musics;
+    }
+
+    /**
+     * Add playlist
+     *
+     * @param \PutYourZikBundle\Entity\Playlist $playlist
+     *
+     * @return User
+     */
+    public function addPlaylist(\PutYourZikBundle\Entity\Playlist $playlist)
+    {
+        $this->playlists[] = $playlist;
+
+        return $this;
+    }
+
+    /**
+     * Remove playlist
+     *
+     * @param \PutYourZikBundle\Entity\Playlist $playlist
+     */
+    public function removePlaylist(\PutYourZikBundle\Entity\Playlist $playlist)
+    {
+        $this->playlists->removeElement($playlist);
+    }
+
+    /**
+     * Get playlists
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlaylists()
+    {
+        return $this->playlists;
+    }
+
+    /**
+     * Add publication
+     *
+     * @param \PutYourZikBundle\Entity\Publication $publication
+     *
+     * @return User
+     */
+    public function addPublication(\PutYourZikBundle\Entity\Publication $publication)
+    {
+        $this->publications[] = $publication;
+
+        return $this;
+    }
+
+    /**
+     * Remove publication
+     *
+     * @param \PutYourZikBundle\Entity\Publication $publication
+     */
+    public function removePublication(\PutYourZikBundle\Entity\Publication $publication)
+    {
+        $this->publications->removeElement($publication);
+    }
+
+    /**
+     * Get publications
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPublications()
+    {
+        return $this->publications;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \PutYourZikBundle\Entity\Comments $comment
+     *
+     * @return User
+     */
+    public function addComment(\PutYourZikBundle\Entity\Comments $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \PutYourZikBundle\Entity\Comments $comment
+     */
+    public function removeComment(\PutYourZikBundle\Entity\Comments $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

@@ -2,7 +2,10 @@
 
 namespace PutYourZikBundle\Controller;
 
+use PutYourZikBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -20,20 +23,34 @@ class RequestController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('PutYourZikBundle:User')->findAll();
-        $comment = $em->getRepository('PutYourZikBundle:Comments')->findAll();
-        $music = $em->getRepository('PutYourZikBundle:Music')->findAll();
-        $playlist = $em->getRepository('PutYourZikBundle:Playlist')->findAll();
-        $tag = $em->getRepository('PutYourZikBundle:Tag')->findAll();
-        $publication = $em->getRepository('PutYourZikBundle:Tag')->findAll();
 
         $jsonuser = $serializer->serialize($user, 'json');
-        $jsoncomment = $serializer->serialize($comment, 'json');
-        $jsonmusic = $serializer->serialize($music, 'json');
-        $jsonplaylist = $serializer->serialize($playlist, 'json');
-        $jsontag = $serializer->serialize($tag, 'json');
-        $jsonpublication = $serializer->serialize($publication, 'json');
 
-        $response = new Response($jsonuser, $jsoncomment, $jsonmusic, $jsonplaylist, $jsonpublication, $jsontag);
-        return $response;
+
+        return $this->render('PutYourZikBundle:Default:index.html.twig', array('response' => $jsonuser));
+    }
+
+    public function getInfosAction(Request $request) {
+
+        $newuser = new User();
+
+        $data = $request->getContent();
+        $result = json_decode($data, true);
+
+        $newuser->setUsername($result['username']);
+        $newuser->setEmail($result['mail']);
+        $newuser->setPassword($result['mdp']);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($newuser);
+        $em->flush();
+
+        return new JsonResponse('success', 200);
+    }
+
+    public function userPlaylistsActions () {
+        $em = $this->getDoctrine()->getManager();
+        $em->getRepository('PutYourZikBundle:User')->findOneBy('id');
+
     }
 }

@@ -3,6 +3,7 @@
 namespace PutYourZikBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 
 /**
  * Music
@@ -34,6 +35,12 @@ class Music
      * @ORM\Column(name="Author", type="string", length=255)
      */
     private $author;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Url", type="string", length=255)
+     */
+    private $url;
 
     /**
      * @var \DateTime
@@ -41,6 +48,32 @@ class Music
      * @ORM\Column(name="Duration", type="time")
      */
     private $duration;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Publication", mappedBy="musics")
+     */
+
+    private $publication;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="musics")
+     */
+
+    private $user;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Playlist", inversedBy="musics")
+     * @JoinTable(name="music_playlist")
+     */
+
+    private $playlists;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="musics")
+     * @JoinTable(name="music_tag")
+     */
+
+    private $tags;
 
 
     /**
@@ -99,6 +132,30 @@ class Music
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     *
+     * @return Music
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 
     /**

@@ -35,6 +35,18 @@ class Comments
      */
     private $content;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Publication", inversedBy="comments")
+     */
+
+    private $publication;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="comments")
+     */
+
+    private $user;
+
 
     /**
      * Get id

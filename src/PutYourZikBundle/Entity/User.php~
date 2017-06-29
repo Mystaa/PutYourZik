@@ -91,6 +91,32 @@ class User
      */
     private $social;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Music", mappedBy="user")
+     */
+
+    private $musics;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Playlist", mappedBy="user")
+     */
+
+    private $playlists;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Publication", mappedBy="user")
+     */
+
+    private $publications;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comments", mappedBy="user")
+     */
+
+    private $comments;
+
+
+
 
     /**
      * Get id

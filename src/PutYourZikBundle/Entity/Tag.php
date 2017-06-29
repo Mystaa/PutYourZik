@@ -3,6 +3,8 @@
 namespace PutYourZikBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
+
 
 /**
  * Tag
@@ -27,6 +29,17 @@ class Tag
      * @ORM\Column(name="Name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Music", mappedBy="tags")
+     */
+    private $musics;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Playlist", mappedBy="tags")
+     */
+
+    private $playlists;
 
 
     /**
@@ -61,5 +74,81 @@ class Tag
     public function getName()
     {
         return $this->name;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->musics = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->playlists = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add music
+     *
+     * @param \PutYourZikBundle\Entity\Music $music
+     *
+     * @return Tag
+     */
+    public function addMusic(\PutYourZikBundle\Entity\Music $music)
+    {
+        $this->musics[] = $music;
+
+        return $this;
+    }
+
+    /**
+     * Remove music
+     *
+     * @param \PutYourZikBundle\Entity\Music $music
+     */
+    public function removeMusic(\PutYourZikBundle\Entity\Music $music)
+    {
+        $this->musics->removeElement($music);
+    }
+
+    /**
+     * Get musics
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMusics()
+    {
+        return $this->musics;
+    }
+
+    /**
+     * Add playlist
+     *
+     * @param \PutYourZikBundle\Entity\Playlist $playlist
+     *
+     * @return Tag
+     */
+    public function addPlaylist(\PutYourZikBundle\Entity\Playlist $playlist)
+    {
+        $this->playlists[] = $playlist;
+
+        return $this;
+    }
+
+    /**
+     * Remove playlist
+     *
+     * @param \PutYourZikBundle\Entity\Playlist $playlist
+     */
+    public function removePlaylist(\PutYourZikBundle\Entity\Playlist $playlist)
+    {
+        $this->playlists->removeElement($playlist);
+    }
+
+    /**
+     * Get playlists
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlaylists()
+    {
+        return $this->playlists;
     }
 }

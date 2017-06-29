@@ -3,6 +3,8 @@
 namespace PutYourZikBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
+
 
 /**
  * Playlist
@@ -34,6 +36,25 @@ class Playlist
      * @ORM\Column(name="Duration", type="time")
      */
     private $duration;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="playlists")
+     * @JoinTable(name="playlist_tag")
+     */
+
+    private $tags;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Music", mappedBy="playlists")
+     */
+
+    private $musics;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="playlists")
+     */
+
+    private $user;
 
 
     /**

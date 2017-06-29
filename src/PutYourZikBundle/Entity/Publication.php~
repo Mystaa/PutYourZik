@@ -35,6 +35,24 @@ class Publication
      */
     private $content;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="publications")
+     */
+
+    private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Music", mappedBy="publication")
+     */
+
+    private $musics;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comments", mappedBy="publication")
+     */
+
+    private $comments;
+
 
     /**
      * Get id

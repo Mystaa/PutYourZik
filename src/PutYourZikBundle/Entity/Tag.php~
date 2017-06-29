@@ -3,6 +3,8 @@
 namespace PutYourZikBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
+
 
 /**
  * Tag
@@ -27,6 +29,17 @@ class Tag
      * @ORM\Column(name="Name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Music", mappedBy="tags")
+     */
+    private $musics;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Playlist", mappedBy="tags")
+     */
+
+    private $playlists;
 
 
     /**
