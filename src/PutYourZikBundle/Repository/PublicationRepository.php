@@ -14,6 +14,7 @@ class PublicationRepository extends \Doctrine\ORM\EntityRepository
 		$qb = $this->createQueryBuilder('p')
 					->select('p') 
 					->join('p.user', 'User')
+					->join('p.musics', 'Music')
 					->getQuery();
 
 		return $qb->getResult();
