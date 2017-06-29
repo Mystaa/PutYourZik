@@ -313,7 +313,7 @@ class User
     /**
      * Set birthday
      *
-     * @param \DateTime $birthday
+     * @param string $birthday
      *
      * @return User
      */
@@ -327,7 +327,7 @@ class User
     /**
      * Get birthday
      *
-     * @return \DateTime
+     * @return string
      */
     public function getBirthday()
     {

@@ -1,3 +1,7 @@
+put_your_zik_publication:
+    resource: "@PutYourZikBundle/Resources/config/routing/publication.yml"
+    prefix:   /publication
+
 put_your_zik_homepage:
     path:     /
     defaults: { _controller: PutYourZikBundle:Request:verif }

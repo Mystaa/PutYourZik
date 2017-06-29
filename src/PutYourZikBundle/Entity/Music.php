@@ -160,7 +160,7 @@ class Music
     /**
      * Set duration
      *
-     * @param \DateTime $duration
+     * @param string $duration
      *
      * @return Music
      */
@@ -174,7 +174,7 @@ class Music
     /**
      * Get duration
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDuration()
     {

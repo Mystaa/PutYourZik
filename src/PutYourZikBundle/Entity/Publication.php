@@ -67,7 +67,7 @@ class Publication
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param string $date
      *
      * @return Publication
      */
@@ -81,7 +81,7 @@ class Publication
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDate()
     {

@@ -10,4 +10,12 @@ namespace PutYourZikBundle\Repository;
  */
 class PublicationRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findAllWithUser(){
+		$qb = $this->createQueryBuilder('p')
+					->select('p') 
+					->join('p.user', 'User')
+					->getQuery();
+
+		return $qb->getResult();
+	}
 }
