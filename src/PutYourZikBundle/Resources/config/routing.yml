@@ -9,3 +9,7 @@ put_your_zik_homepage:
 put_your_zik_test:
     path:    /test
     defaults: { _controller: PutYourZikBundle:Request:getInfos }
+
+put_you_zik_profil:
+    path:    /profil/{id}
+    defaults: { _controller: PutYourZikBundle:Request:userPlaylists }

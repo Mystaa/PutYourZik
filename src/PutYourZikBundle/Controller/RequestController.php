@@ -48,9 +48,24 @@ class RequestController extends Controller
         return new JsonResponse('success', 200);
     }
 
-    public function userPlaylistsActions () {
+    public function userPlaylistsAction ($id) {
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(1);
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object->getId();
+        });
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers, $encoders);
+
         $em = $this->getDoctrine()->getManager();
-        $em->getRepository('PutYourZikBundle:User')->findOneBy('id');
+        $user = $em->getRepository('PutYourZikBundle:User')->find($id);
+        $user->getPlaylists();
+
+        $jsonify = $serializer->serialize($user, 'json');
+
+        return new Response($jsonify);
 
     }
 }

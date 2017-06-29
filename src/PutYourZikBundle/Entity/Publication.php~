@@ -111,4 +111,104 @@ class Publication
     {
         return $this->content;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->musics = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set user
+     *
+     * @param \PutYourZikBundle\Entity\User $user
+     *
+     * @return Publication
+     */
+    public function setUser(\PutYourZikBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \PutYourZikBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Add music
+     *
+     * @param \PutYourZikBundle\Entity\Music $music
+     *
+     * @return Publication
+     */
+    public function addMusic(\PutYourZikBundle\Entity\Music $music)
+    {
+        $this->musics[] = $music;
+
+        return $this;
+    }
+
+    /**
+     * Remove music
+     *
+     * @param \PutYourZikBundle\Entity\Music $music
+     */
+    public function removeMusic(\PutYourZikBundle\Entity\Music $music)
+    {
+        $this->musics->removeElement($music);
+    }
+
+    /**
+     * Get musics
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMusics()
+    {
+        return $this->musics;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \PutYourZikBundle\Entity\Comments $comment
+     *
+     * @return Publication
+     */
+    public function addComment(\PutYourZikBundle\Entity\Comments $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \PutYourZikBundle\Entity\Comments $comment
+     */
+    public function removeComment(\PutYourZikBundle\Entity\Comments $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
 }
