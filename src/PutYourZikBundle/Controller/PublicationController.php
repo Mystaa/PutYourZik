@@ -26,8 +26,13 @@ class PublicationController extends Controller
     {
 
     	$encoders = array(new XmlEncoder(), new JsonEncoder());
-    	$normalizers = array(new ObjectNormalizer());
-    	$serializer = new Serializer($normalizers, $encoders);
+    	$normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(1);
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object->getId();
+        });
+        $normalizers = array($normalizer);    	
+        $serializer = new Serializer($normalizers, $encoders);
 
         $em = $this->getDoctrine()->getManager();
 
@@ -67,10 +72,15 @@ class PublicationController extends Controller
      */
     public function showAction(Publication $publication)
     {
-        $deleteForm = $this->createDeleteForm($publication);
+        //$deleteForm = $this->createDeleteForm($publication);
 
     	$encoders = array(new XmlEncoder(), new JsonEncoder());
-    	$normalizers = array(new ObjectNormalizer());
+    	$normalizer = new ObjectNormalizer();
+    	        $normalizer->setCircularReferenceLimit(1);
+    	        $normalizer->setCircularReferenceHandler(function ($object) {
+    	            return $object->getId();
+    	        });
+    	        $normalizers = array($normalizer);    	$serializer = new Serializer($normalizers, $encoders);
     	$serializer = new Serializer($normalizers, $encoders);
 
         $em = $this->getDoctrine()->getManager();
@@ -84,7 +94,7 @@ class PublicationController extends Controller
         return $this->render('publication/show.html.twig', array(
             'publication' => $publication,
             'publication' => $jsonPublication,
-            'delete_form' => $deleteForm->createView(),
+            //'delete_form' => $deleteForm->createView(),
         ));
     }
 

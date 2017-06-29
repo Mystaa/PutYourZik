@@ -31,9 +31,9 @@ class Playlist
     private $name;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="Duration", type="time")
+     * @ORM\Column(name="Duration", type="string", length=255)
      */
     private $duration;
 
@@ -94,7 +94,7 @@ class Playlist
     /**
      * Set duration
      *
-     * @param \DateTime $duration
+     * @param string $duration
      *
      * @return Playlist
      */
@@ -108,7 +108,7 @@ class Playlist
     /**
      * Get duration
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDuration()
     {

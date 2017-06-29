@@ -71,9 +71,9 @@ class User
     private $avatar;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="birthday", type="datetime")
+     * @ORM\Column(name="birthday", type="string", length=255)
      */
     private $birthday;
 
@@ -299,7 +299,7 @@ class User
     /**
      * Set birthday
      *
-     * @param \DateTime $birthday
+     * @param string $birthday
      *
      * @return User
      */
@@ -313,7 +313,7 @@ class User
     /**
      * Get birthday
      *
-     * @return \DateTime
+     * @return string
      */
     public function getBirthday()
     {

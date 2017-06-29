@@ -43,9 +43,9 @@ class Music
     private $url;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="Duration", type="time")
+     * @ORM\Column(name="Duration", type="string", length=255)
      */
     private $duration;
 
@@ -160,7 +160,7 @@ class Music
     /**
      * Set duration
      *
-     * @param \DateTime $duration
+     * @param string $duration
      *
      * @return Music
      */
@@ -174,7 +174,7 @@ class Music
     /**
      * Get duration
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDuration()
     {
