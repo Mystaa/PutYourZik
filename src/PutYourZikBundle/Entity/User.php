@@ -71,9 +71,9 @@ class User
     private $avatar;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="birthday", type="datetime")
+     * @ORM\Column(name="birthday", type="string", length=255)
      */
     private $birthday;
 
@@ -87,9 +87,23 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="social", type="string", length=255)
+     * @ORM\Column(name="facebook", type="string", length=255)
      */
-    private $social;
+    private $facebook;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instagram", type="string", length=255)
+     */
+    private $instagram;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="linkedin", type="string", length=255)
+     */
+    private $linkedin;
 
     /**
      * @ORM\OneToMany(targetEntity="Music", mappedBy="user")
@@ -351,22 +365,7 @@ class User
      *
      * @return User
      */
-    public function setSocial($social)
-    {
-        $this->social = $social;
 
-        return $this;
-    }
-
-    /**
-     * Get social
-     *
-     * @return string
-     */
-    public function getSocial()
-    {
-        return $this->social;
-    }
     /**
      * Constructor
      */
@@ -512,5 +511,77 @@ class User
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Set facebook
+     *
+     * @param string $facebook
+     *
+     * @return User
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    /**
+     * Get facebook
+     *
+     * @return string
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * Set instagram
+     *
+     * @param string $instagram
+     *
+     * @return User
+     */
+    public function setInstagram($instagram)
+    {
+        $this->instagram = $instagram;
+
+        return $this;
+    }
+
+    /**
+     * Get instagram
+     *
+     * @return string
+     */
+    public function getInstagram()
+    {
+        return $this->instagram;
+    }
+
+    /**
+     * Set linkedin
+     *
+     * @param string $linkedin
+     *
+     * @return User
+     */
+    public function setLinkedin($linkedin)
+    {
+        $this->linkedin = $linkedin;
+
+        return $this;
+    }
+
+    /**
+     * Get linkedin
+     *
+     * @return string
+     */
+    public function getLinkedin()
+    {
+        return $this->linkedin;
     }
 }

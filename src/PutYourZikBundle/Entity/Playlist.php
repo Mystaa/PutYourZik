@@ -31,9 +31,9 @@ class Playlist
     private $name;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="Duration", type="time")
+     * @ORM\Column(name="Duration", type="string", length=255)
      */
     private $duration;
 

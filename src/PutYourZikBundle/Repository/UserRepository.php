@@ -2,6 +2,8 @@
 
 namespace PutYourZikBundle\Repository;
 
+
+
 /**
  * UserRepository
  *
@@ -10,4 +12,15 @@ namespace PutYourZikBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findToken($mail, $token) {
+        $qb = $this->createQueryBuilder('u')
+            ->select('u')
+            ->where('u.email = :mail')
+            ->andWhere('u.token = :token')
+            ->setParameter('mail', $mail)
+            ->setParameter('token', $token)
+            ->getQuery();
+
+        return $qb->getResult();
+    }
 }

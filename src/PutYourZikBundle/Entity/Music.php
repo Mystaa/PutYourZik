@@ -43,9 +43,9 @@ class Music
     private $url;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="Duration", type="time")
+     * @ORM\Column(name="Duration", type="string", length=255)
      */
     private $duration;
 
@@ -277,18 +277,7 @@ class Music
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPlaylists()
-    {
-        return $this->playlists;
-    }
 
-    /**
-     * Add tag
-     *
-     * @param \PutYourZikBundle\Entity\Tag $tag
-     *
-     * @return Music
-     */
     public function addTag(\PutYourZikBundle\Entity\Tag $tag)
     {
         $this->tags[] = $tag;
