@@ -277,18 +277,7 @@ class Music
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPlaylists()
-    {
-        return $this->playlists;
-    }
 
-    /**
-     * Add tag
-     *
-     * @param \PutYourZikBundle\Entity\Tag $tag
-     *
-     * @return Music
-     */
     public function addTag(\PutYourZikBundle\Entity\Tag $tag)
     {
         $this->tags[] = $tag;

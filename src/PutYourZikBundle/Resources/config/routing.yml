@@ -4,12 +4,35 @@ put_your_zik_publication:
 
 put_your_zik_homepage:
     path:     /
-    defaults: { _controller: PutYourZikBundle:Request:request }
+    defaults: { _controller: PutYourZikBundle:Request:verif }
 
 put_your_zik_test:
     path:    /test
     defaults: { _controller: PutYourZikBundle:Request:getInfos }
 
-put_you_zik_profil:
+put_you_zik_profil_complet:
     path:    /profil/{id}
-    defaults: { _controller: PutYourZikBundle:Request:userPlaylists }
+    defaults: { _controller: PutYourZikBundle:Request:getUsers }
+
+put_you_zik_profil:
+    path:    /profil
+    defaults: { _controller: PutYourZikBundle:Request:getAllUsers }
+
+put_you_zik_playlist:
+    path:    /playlist/{id}
+    defaults: { _controller: PutYourZikBundle:Request:getPlaylist }
+    methods:    'GET'
+
+put_you_zik_publication:
+    path:    /publication/{id}
+    defaults: { _controller: PutYourZikBundle:Request:getPublication }
+    methods:    'GET'
+
+put_you_zik_publication_all:
+    path:    /publication
+    defaults: { _controller: PutYourZikBundle:Request:getAllPublication }
+    methods:    'GET'
+
+put_your_zik_verif:
+    path:    /verif
+    defaults: { _controller: PutYourZikBundle:Request:verif }
