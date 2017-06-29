@@ -50,7 +50,7 @@ class Music
     private $duration;
 
     /**
-     * @ORM\OneToMany(targetEntity="Publication", mappedBy="musics")
+     * @ORM\ManyToOne(targetEntity="Publication", inversedBy="musics")
      */
 
     private $publication;
@@ -62,11 +62,10 @@ class Music
     private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Playlist", inversedBy="musics")
-     * @JoinTable(name="music_playlist")
+     * @ORM\ManyToOne(targetEntity="Playlist", inversedBy="musics")
      */
 
-    private $playlists;
+    private $playlist;
 
     /**
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="musics")
@@ -315,5 +314,43 @@ class Music
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * Set playlist
+     *
+     * @param \PutYourZikBundle\Entity\Playlist $playlist
+     *
+     * @return Music
+     */
+    public function setPlaylist(\PutYourZikBundle\Entity\Playlist $playlist = null)
+    {
+        $this->playlist = $playlist;
+
+        return $this;
+    }
+
+    /**
+     * Get playlist
+     *
+     * @return \PutYourZikBundle\Entity\Playlist
+     */
+    public function getPlaylist()
+    {
+        return $this->playlist;
+    }
+
+    /**
+     * Set publication
+     *
+     * @param \PutYourZikBundle\Entity\Publication $publication
+     *
+     * @return Music
+     */
+    public function setPublication(\PutYourZikBundle\Entity\Publication $publication = null)
+    {
+        $this->publication = $publication;
+
+        return $this;
     }
 }

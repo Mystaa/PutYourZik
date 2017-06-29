@@ -45,7 +45,7 @@ class Playlist
     private $tags;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Music", mappedBy="playlists")
+     * @ORM\OneToMany(targetEntity="Music", mappedBy="playlist")
      */
 
     private $musics;

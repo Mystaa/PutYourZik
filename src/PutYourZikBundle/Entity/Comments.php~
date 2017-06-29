@@ -105,4 +105,52 @@ class Comments
     {
         return $this->content;
     }
+
+    /**
+     * Set publication
+     *
+     * @param \PutYourZikBundle\Entity\Publication $publication
+     *
+     * @return Comments
+     */
+    public function setPublication(\PutYourZikBundle\Entity\Publication $publication = null)
+    {
+        $this->publication = $publication;
+
+        return $this;
+    }
+
+    /**
+     * Get publication
+     *
+     * @return \PutYourZikBundle\Entity\Publication
+     */
+    public function getPublication()
+    {
+        return $this->publication;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \PutYourZikBundle\Entity\User $user
+     *
+     * @return Comments
+     */
+    public function setUser(\PutYourZikBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \PutYourZikBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }
