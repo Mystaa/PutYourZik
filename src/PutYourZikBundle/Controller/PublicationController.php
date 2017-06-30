@@ -57,6 +57,7 @@ class PublicationController extends Controller
         
         $publication->setContent($result['content']);
         $publication->setDate($result['date']);
+        $publication->addMusic($result['musique']);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($publication);
