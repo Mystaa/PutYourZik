@@ -7,7 +7,7 @@ put_your_zik_homepage:
     defaults: { _controller: PutYourZikBundle:Request:verif }
 
 put_your_zik_test:
-    path:    /test
+    path:    /test/{id}
     defaults: { _controller: PutYourZikBundle:Request:getInfos }
 
 put_you_zik_profil_complet:
@@ -20,7 +20,12 @@ put_you_zik_profil:
 
 put_you_zik_playlist:
     path:    /playlist/{id}
-    defaults: { _controller: PutYourZikBundle:Request:getPlaylist }
+    defaults: { _controller: PutYourZikBundle:Request:getPlaylistByUser }
+    methods:    'GET'
+
+put_you_zik_all_playlist:
+    path:    /playlist
+    defaults: { _controller: PutYourZikBundle:Request:getAllPlaylist }
     methods:    'GET'
 
 put_you_zik_publication:
@@ -36,3 +41,8 @@ put_you_zik_publication_all:
 put_your_zik_verif:
     path:    /verif
     defaults: { _controller: PutYourZikBundle:Request:verif }
+
+put_your_zik_music_playlist:
+    path:    /music/{id}
+    defaults: { _controller: PutYourZikBundle:Request:getMusicByPlaylist }
+

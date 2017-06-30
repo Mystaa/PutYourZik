@@ -10,4 +10,14 @@ namespace PutYourZikBundle\Repository;
  */
 class MusicRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findMusicByPlaylist($id)
+    {
+        $qb = $this->createQueryBuilder('m')
+            ->select('m')
+            ->where('m.playlist = :id')
+            ->setParameter(':id', $id)
+            ->getQuery();
+
+        return $qb->getResult();
+    }
 }

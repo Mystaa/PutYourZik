@@ -2,7 +2,6 @@
 
 namespace PutYourZikBundle\Controller;
 
-use PutYourZikBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,16 +29,25 @@ class RequestController extends Controller
         return $this->render('PutYourZikBundle:Default:index.html.twig', array('response' => $jsonuser));
     }
 
-    public function getInfosAction(Request $request) {
+    public function getInfosAction(Request $request, $id) {
 
-        $newuser = new User();
 
         $data = $request->getContent();
         $result = json_decode($data, true);
 
+        $em = $this->getDoctrine()->getManager();
+        $newuser = $em->getRepository('PutYourZikBundle:User')->find($id);
+
+        $newuser->setNom($result['nom']);
+        $newuser->setPrenom($result['prenom']);
         $newuser->setUsername($result['username']);
-        $newuser->setEmail($result['mail']);
-        $newuser->setPassword($result['mdp']);
+        $newuser->setSchool($result['school']);
+        $newuser->setInstagram($result['instagram']);
+        $newuser->setFacebook($result['facebook']);
+        $newuser->setLinkedin($result['linkedin']);
+        $newuser->setEmail($result['email']);
+        $newuser->setPassword($result['password']);
+        $newuser->setAvatar($result['avatar']);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($newuser);
@@ -105,6 +113,25 @@ class RequestController extends Controller
         return new Response($jsonify);
     }
 
+    public function getAllPlaylistAction() {
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(1);
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object->getId();
+        });
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $em = $this->getDoctrine()->getManager();
+        $playlist = $em->getRepository('PutYourZikBundle:Playlist')->findAll();
+
+        $jsonify = $serializer->serialize($playlist, 'json');
+
+        return new Response($jsonify);
+    }
+
     public function getPublicationAction($id) {
 
         $encoders = array(new XmlEncoder(), new JsonEncoder());
@@ -162,5 +189,46 @@ class RequestController extends Controller
         }
 
         return $this->render('PutYourZikBundle:Default:index.html.twig');
+    }
+
+    public function getPlaylistByUserAction($id)
+    {
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(1);
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object->getId();
+        });
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $em = $this->getDoctrine()->getManager();
+        $pluser = $em->getRepository('PutYourZikBundle:Playlist')->findPlaylistByUser($id);
+
+        $jsonify = $serializer->serialize($pluser, 'json');
+
+        return new Response($jsonify);
+
+    }
+    public function getMusicByPlaylistAction($id, $pl_id)
+    {
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(1);
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object->getId();
+        });
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $em = $this->getDoctrine()->getManager();
+        $musicpl = $em->getRepository('PutYourZikBundle:Music')->findMusicByPlaylist($id, $pl_id);
+
+        $jsonify = $serializer->serialize($musicpl, 'json');
+
+        return new Response($jsonify);
+
     }
 }
